@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿//Paul Belches 17088
+// Personaje animado con movimiento
+//18/04/18
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,6 +30,7 @@ public class Character : MonoBehaviour {
 	void Update () {
         float move = Input.GetAxis("Horizontal");
         anim.SetFloat("Speed",Mathf.Abs(move));
+        // Revisar movimiento en el eje horizontal
         if (move != 0) {
             rb2d.transform.Translate(new Vector3(1, 0, 0) * move * speed * Time.deltaTime);
             cam.transform.position = new Vector3(rb2d.transform.position.x, cam.transform.position.y, cam.transform.position.z);
@@ -33,7 +38,7 @@ public class Character : MonoBehaviour {
         }
         
         sr.flipX = !facingRight;
-
+        //Salto
         if (Input.GetButtonDown("Jump")) {
             audio.Play();
             rb2d.AddForce(Vector2.up*jumpForce);
